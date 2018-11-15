@@ -1,2 +1,2 @@
-# drop-blocks
+# drop-blocks in caffe
 
