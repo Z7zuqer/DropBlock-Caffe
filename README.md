@@ -1,4 +1,4 @@
-# drop-blocks in caffe
+# DropBlock in caffe
 * dropout.cpp
 * dropout.hpp
 * dropout.cu
