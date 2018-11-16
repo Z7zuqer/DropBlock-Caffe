@@ -40,8 +40,8 @@ void DropoutLayer<Dtype>::Forward_gpu(const vector<Blob<Dtype>*>& bottom,
       const Dtype* bottom_data = bottom[0]->mutable_gpu_data();
       Dtype* top_data = top[0]->mutable_gpu_data();
       for(int n=0;n<this->num_;n++){
-        this->forward_gpu_gemm(mask_t+n*this->bottom_dim_,weight,
-            mask+n*this->bottom_dim_);
+        this->forward_gpu_gemm(mask_t+n*this->dim_,weight,
+            mask+n*this->dim_);
       }
       MaskGene<<<CAFFE_GET_BLOCKS(count), CAFFE_CUDA_NUM_THREADS>>>(count,
               mask, this->block_thres_);
