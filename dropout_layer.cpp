@@ -23,7 +23,7 @@ void DropoutLayer<Dtype>::LayerSetUp(const vector<Blob<Dtype>*>& bottom,
     channels_=bottom[0]->channels();
     weights_.resize(1);
     weights_[0].reset(new Blob<float>(weight_shape));
-    kernel_dim_ = block_thres_;
+    kernel_dim_ = block_thres_*channels_;
     vector<int>col_shape;
     num_=bottom[0]->num();
     featuremap_h_=bottom[0]->height();
@@ -31,7 +31,7 @@ void DropoutLayer<Dtype>::LayerSetUp(const vector<Blob<Dtype>*>& bottom,
     padded_size_=(featuremap_h_+block_size_-1)*(featuremap_w_+block_size_-1);
     this->blobs_.resize(0);
     dim_ = channels_*featuremap_h_*featuremap_w_;
-    col_shape.push_back(kernel_dim_);
+    col_shape.push_back(channels_);
     col_shape.push_back(featuremap_h_+block_size_-1);
     col_shape.push_back(featuremap_w_+block_size_-1);
     col_buffer_.Reshape(col_shape);
